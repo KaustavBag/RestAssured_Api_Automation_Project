@@ -1,8 +1,11 @@
 package org.example;
 
 
+import io.restassured.RestAssured;
 import org.testng.annotations.Test;
 
+import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.when;
 import static org.testng.Assert.assertTrue;
 
 /**
@@ -17,6 +20,10 @@ public class AppTest
     public void shouldAnswerWithTrue()
     {
 
-        assertTrue( true );
+        //assertTrue( true );
+        RestAssured.baseURI="https://restful-booker.herokuapp.com";
+        given().contentType("application/json")
+        .when().get("/ping")
+        .then().statusCode(201);
     }
 }
